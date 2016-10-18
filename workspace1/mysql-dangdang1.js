@@ -1,0 +1,19 @@
+var mysql   = require('mysql');
+var connection = mysql.createConnection({
+ host   : 'localhost',
+ user   : 'root',
+ password : '123456',
+ database : 'spider_taobao'
+});
+ 
+connection.connect();
+ 
+// 
+for(var i =0;i<50000;i++){
+connection.query('insert into dangdang (price,title,comment,link,img) values (12,"dsf","ioew","weijd","kewjkd")');
+console.log("suces-->"+i);
+}
+
+ 
+
+ 
