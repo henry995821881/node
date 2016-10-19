@@ -19,12 +19,11 @@ app.use(express.static('public'));
 app.post('/post', urlencodedParser, function (req, res) {
 
    
-	var items = eval("("+req.body.arr+")");
-         insertDB(items);
+var str =	req.body.arr;
     
+console.log(str);
 
-res.end("end");
-console.log("end")
+res.send("end");
     
 })
 
@@ -39,33 +38,5 @@ var server = app.listen(8888, function () {
 
 
 
-//////
-function insertDB(items){
-
- 
-	for(i in items){
-var  sql = 'insert into dangdang (price,title,comment,link,img) values(?,?,?,?,?)';
-//price È¥µô£¤
-var p = items[i].price.substring(1);
-//È¥µô.00
-var p_= p.substring(0,p.indexOf(".")!=-1 ? p.indexOf("."): p.length );
-	var  params = [p_,items[i].title,items[i].comment,items[i].link,items[i].img];
-
-     connection.query(sql,params,function (err, result) {
-        if(err){
-         console.log('[INSERT ERROR] - ',err.message);
-         return;
-        }        
-        console.log("success");
-      // console.log('--------------------------INSERT----------------------------');
-       //console.log('INSERT ID:',result.insertId);        
-     //  console.log('INSERT ID:',result);        
-      // console.log('-----------------------------------------------------------------');  
-     });
-
-
-      }
      
-     
-
-}
+    
